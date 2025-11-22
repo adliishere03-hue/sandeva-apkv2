@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>RaflyShop Digital Store - VPS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<video class="page-bg-video" autoplay loop muted playsinline>
+    <source src="background2.mp4" type="video/mp4">
+</video>
+<div class="page-overlay"></div>
+
+
+<!-- LAYAR WELCOME / IZIN AUDIO -->
+<div id="welcome-screen">
+  <div class="welcome-panel">
+    <div class="welcome-header">
+      <div class="welcome-logo">VC</div>
+      <div>
+        <h1>RaflyShop Digital Store - VPS</h1>
+        <p>Dashboard sederhana by RaflyShop Untuk Membuat VPS.</p>
+      </div>
+    </div>
+
+    <div class="welcome-body">
+      <p>
+        Dengan melanjutkan, kamu menyetujui bahwa:
+      </p>
+      <ul>
+        <li>Kamu menggunakan <strong>API Token dari Admin</strong> milikmu sendiri</li>
+        <li>Kamu paham risiko biaya, keamanan, dan penggunaan VPS</li>
+      </ul>
+
+      <!-- video kecil, bukan background penuh -->
+      <div class="welcome-video-wrapper">
+        <video id="bg-video" autoplay muted loop playsinline>
+          <source src="background.mp4" type="video/mp4">
+          Browser kamu tidak mendukung video.
+        </video>
+      </div>
+    </div>
+
+    <button id="btn-enter" class="btn primary full">
+      Masuk ke Dashboard
+    </button>
+    <p class="welcome-note">
+      *Tombol di atas juga mengizinkan pemutaran suara dari video.
+    </p>
+  </div>
+</div>
+
+<!-- SHELL APP UTAMA -->
+<div id="main-app" class="app-shell">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="brand-mark">VC</span>
+      <div class="brand-text">
+        <h1>RaflyShop Digital Store - VPS</h1>
+        <p>Panel praktis untuk bikin Virtual Private Server By RaflyShop.</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-tag">#RAFLYSHOPDIGITAL</span>
+      <span class="topbar-tag accent">API BY RaflyShop</span>
+    </div>
+  </header>
+
+        <!-- KARTU TOKEN -->
+      <section class="card token-card">
+        <div class="card-header">
+          <h2>API Token</h2>
+          <p>Masukkan personal access token dari Admin untuk mulai.</p>
+        </div>
+
+        <div class="token-grid">
+          <div>
+            <label for="token">API Token RaflyShop Digital Store</label>
+            <div class="token-input-row">
+              <input id="token" type="password" placeholder="Contoh: dop_v1_xxxxxxxxxxxxxxxxx">
+              <button id="save-token" class="btn secondary">Simpan & Hubungkan</button>
+            </div>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="remember-token" checked>
+              Tolong Di Ingat Bang Sandepaaaa
+            </label>
+          </div>
+
+          <div class="token-info">
+            <p class="token-info-title">Catatan</p>
+            <ul>
+              <li>Token disimpan di <code>dalam</code> perangkatmu.</li>
+              <li>Jangan gunakan token di komputer publik.</li>
+              <li>Jika bermasalah, hapus token dan masukkan ulang.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+  <!-- LAYOUT: SIDEBAR + CONTENT -->
+  <div class="layout">
+
+    <!-- SIDEBAR NAV -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-title">Navigasi</p>
+        <nav class="tabs">
+          <button class="tab-btn active" data-tab="tab-create">Buat VPS</button>
+          <button class="tab-btn" data-tab="tab-droplets">Daftar Droplet</button>
+          <button class="tab-btn" data-tab="tab-account">Akun & API Explorer</button>
+          <button class="tab-btn" data-tab="coming-soon1">Instal Pterodactyl</button>
+          <button class="tab-btn" data-tab="coming-soon2">Kirim Data ke Pembeli</button>
+          <button class="tab-btn" data-tab="credit-san">RaflyShop - Credit</button>
+        </nav>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-title">Status Akun</p>
+        <div class="account-mini">
+          <div class="account-mini-header">
+            <span class="dot-online"></span>
+            <span>RaflyShop Digital Store</span>
+          </div>
+          <div id="account-info" class="account-mini-body">
+            Belum terhubung ke API.
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- KONTEN UTAMA -->
+    <main class="content">
+
+      <!-- TAB: BUAT VPS -->
+      <section id="tab-create" class="tab active">
+        <section class="card">
+          <div class="card-header">
+            <h2>Buat Droplet Baru</h2>
+            <p>Tentukan spesifikasi droplet yang ingin kamu buat.</p>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-column">
+              <div class="field">
+                <label for="droplet-name">Nama VPS</label>
+                <input id="droplet-name" type="text" placeholder="misal: toko-panel-01">
+              </div>
+
+              <div class="field">
+                <label for="region">Region</label>
+                <select id="region">
+                  <option value="">Memuat dari API...</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="cpu-type">Tipe Paket CPU</label>
+                <select id="cpu-type">
+                  <option value="any">Semua paket (default)</option>
+                  <option value="basic">Basic (Regular)</option>
+                  <option value="amd">Premium AMD</option>
+                  <option value="intel">Premium Intel</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="size">Paket CPU / RAM</label>
+                <select id="size">
+                  <option value="">Pilih region & tipe paket lebih dulu...</option>
+                </select>
+                <p class="field-hint">
+                  Diambil dari endpoint <code>RaflyShop</code> dan difilter otomatis.
+                </p>
+              </div>
+            </div>
+
+            <div class="form-column">
+              <div class="field">
+                <label for="os-select">Sistem Operasi</label>
+                <select id="os-select">
+                  <option value="">Memuat daftar OS...</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="version-select">Versi / Image</label>
+                <select id="version-select">
+                  <option value="">Pilih OS terlebih dahulu...</option>
+                </select>
+                <p class="field-hint">
+                  Data image diambil dari <code>RaflyShop</code>.
+                </p>
+              </div>
+
+              <div class="field">
+                <label>Metode Login</label>
+                <div class="auth-choice">
+                  <label>
+                    <input type="radio" name="auth-method" value="ssh" id="auth-ssh-radio" checked>
+                    SSH Key
+                  </label>
+                  <label>
+                    <input type="radio" name="auth-method" value="password" id="auth-password-radio">
+                    Password root
+                  </label>
+                </div>
+              </div>
+
+              <div class="field auth-mode" id="auth-ssh">
+                <label for="ssh-select">SSH Key yang digunakan</label>
+                <select id="ssh-select" multiple>
+                  <option value="">Memuat SSH key...</option>
+                </select>
+                <p class="field-hint">
+                  Diambil dari <code>/v2/account/keys</code>. Gunakan CTRL/CMD untuk memilih lebih dari satu.
+                </p>
+              </div>
+
+              <div class="field auth-mode" id="auth-password" style="display:none">
+                <label for="root-password">Password user <code>root</code></label>
+                <input id="root-password" type="password" placeholder="Minimal 8 karakter">
+                <p class="field-hint">
+                  Password akan di-set via <code>cloud-config user_data</code>.
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="tags">Tag VPS (opsional)</label>
+                <input id="tags" type="text" placeholder="misal: panel, client-a, reseller">
+                <p class="field-hint">
+                  Pisahkan dengan koma, contoh: <code>panel,client-a,reseller</code>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button id="create-btn" class="btn primary full">
+            🚀 Buat Droplet
+          </button>
+          <p id="create-status" class="status-text"></p>
+        </section>
+      </section>
+
+      <!-- TAB: DAFTAR DROPLET -->
+      <section id="tab-droplets" class="tab">
+        <section class="card">
+          <div class="card-header row">
+            <div>
+              <h2>Daftar Droplet</h2>
+              <p>Lihat, pilih, dan jalankan aksi cepat pada droplet kamu.</p>
+            </div>
+            <button id="reload-droplets" class="btn ghost small">Muat Ulang</button>
+          </div>
+
+          <div id="droplets-empty" class="empty-state">
+            Tidak ada data droplet. Klik "Muat Ulang" setelah token disimpan.
+          </div>
+
+          <div class="droplet-layout">
+            <div class="droplet-table-wrap">
+              <table class="droplet-table" id="droplet-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Region</th>
+                    <th>Status</th>
+                    <th>IP Publik</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <div class="droplet-detail-panel">
+              <h3>Detail Droplet</h3>
+              <div id="droplet-detail-content" class="droplet-detail-body">
+                Pilih salah satu droplet di tabel untuk melihat detail & aksi.
+              </div>
+            </div>
+          </div>
+
+          <p id="droplet-status" class="status-text"></p>
+        </section>
+      </section>
+
+      <!-- TAB: ACCOUNT & EXPLORER -->
+      <section id="tab-account" class="tab">
+        <section class="card">
+          <div class="card-header">
+            <h2>Informasi Akun</h2>
+            <p>Ringkasan akun DigitalOcean dan batasan resource.</p>
+          </div>
+          <pre id="account-raw" class="code-block">Belum di-load...</pre>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2>Mini API Explorer</h2>
+            <p>Untuk kamu yang ingin langsung mencoba endpoint DigitalOcean v2.</p>
+          </div>
+
+          <div class="explorer-grid">
+            <div>
+              <div class="field">
+                <label for="explorer-method">Method</label>
+                <select id="explorer-method">
+                  <option>GET</option>
+                  <option>POST</option>
+                  <option>DELETE</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="explorer-path">Path</label>
+                <input id="explorer-path" type="text" value="/account" placeholder="/droplets, /regions, ...">
+              </div>
+            </div>
+
+            <div>
+              <div class="field">
+                <label for="explorer-body">Body JSON (opsional)</label>
+                <textarea id="explorer-body" rows="4" placeholder='{"name": "contoh"}'></textarea>
+              </div>
+            </div>
+          </div>
+
+          <button id="explorer-send" class="btn primary">
+            ⚡ Kirim Request
+          </button>
+          <pre id="explorer-result" class="code-block"></pre>
+        </section>
+      </section>
+
+      <!-- TAB: INSTAL PTERODACTYL (COMING SOON) -->
+      <section id="coming-soon1" class="tab">
+        <section class="card">
+          <div class="card-header">
+            <h2>Instal Panel Pterodactyl</h2>
+            <p>Fitur akan datang.</p>
+          </div>
+          <p>
+            Nantinya, laman ini akan berisi wizard instalasi panel Pterodactyl
+            otomatis di VPS yang kamu pilih dari daftar droplet.
+          </p>
+          <p>
+            Kamu bisa menambahkan script instalasi, opsi versi panel, serta
+            konfigurasi domain dan SSL.
+          </p>
+        </section>
+      </section>
+
+           <!-- CREDIT (COMING SOON) -->
+      <section id="credit-san" class="tab">
+        <section class="card">
+          <div class="card-header">
+            <h2>RaflyShop Digital Store - Credit</h2>
+            <p>
+                Beli Token Di RaflyShop Hanya Rp100.000
+            </p>
+            <p>
+                WhatsApp : https://wa.me/6283135085081
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <!-- TAB: KIRIM DATA KE PEMBELI (COMING SOON) -->
+      <section id="coming-soon2" class="tab">
+        <section class="card">
+          <div class="card-header">
+            <h2>Kirim Data VPS ke Pembeli</h2>
+            <p>Fitur akan datang.</p>
+          </div>
+          <p>
+            Rencananya, dari sini kamu bisa membuat template pesan otomatis
+            berisi IP, username, password, dan catatan lain yang siap kirim
+            via WhatsApp, Telegram, atau email.
+          </p>
+        </section>
+      </section>
+
+
+      <footer class="footer">
+        <span>© 2025 VPS Control Desk — Dibangun di atas DigitalOcean API</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="sandeva.js"></script>
+</body>
+</html>
